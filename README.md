@@ -1,6 +1,6 @@
 # QOSF - Screening Task 2 (Quantum Error Correction)
 
-This project is completed to satisfy the application requirements of QOSF mentorship program. You will find here my solution to Task 2 of the screening tasks.
+This project is completed to satisfy the application requirements of QOSF mentorship program (My project is not approved yet!!). You will find here my solution to Task 2 of the screening tasks.
 
 ## Content
 + ''Task2.pdf'' is a theoretical report about the task:
