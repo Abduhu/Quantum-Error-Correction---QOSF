@@ -13,7 +13,7 @@ Task 2: Quantum Error Correction
     1) error_free_case
     2) noisy_case
     3) corrected_case
-    4)
+    4) compare
 
 """
 import numpy as np
