@@ -226,21 +226,13 @@ def corrected_case(n_shots=N_SHOTS,
     circuit.barrier(q)
     
     
-    
     # Hadamard gate on qubit 0
     for i in range(3):
         circuit.cx(q[i * 3], q[18 + i])
     for i in range(3):
         circuit.cz(q[18 + i], q[3 * i])
     for i in range(3):
-        circuit.z(q[i * 3])
-    # for i in range(9):
-    #     circuit.x(q[i])
-    # for i in range(3):
-    #     circuit.h(q[18 + i])
-    #     circuit.cz(q[18 + i], q[3 * i])
-
-        
+        circuit.z(q[i * 3])        
     
     
     # Generate error
@@ -296,11 +288,7 @@ def corrected_case(n_shots=N_SHOTS,
         circuit.h(9)
         
     circuit.measure([q[0], q[9]], c)
-    
-    # Simulation
-    # sim = QasmSimulator()
-    # result = execute(circuit, sim, shots=n_shots).result()
-    # counts = result.get_counts(0)
+   
 
     # Execute the circuit on the qasm simulator
     job = execute(circuit, simulator, shots=n_shots)
@@ -308,7 +296,7 @@ def corrected_case(n_shots=N_SHOTS,
     # Grab results from the job
     result = job.result()
     
-    # Returns counts
+    # Return counts
     counts = result.get_counts(circuit)
     
     if verbose:
@@ -324,6 +312,10 @@ def compare(n_trials=10, n_shots_=N_SHOTS,
     """
     4) Test your solution by making many measurements over the final state
     and testing that the results are in line with the expectations.
+    
+    Comparison of error-free circuit, noisy circuit and corrected circuit
+    is performed in basis of Z and X eigenvectors to verify that overall bit-flips
+    and phase-flips are well corrected.
     
     Parameters
     ----------
@@ -343,7 +335,7 @@ def compare(n_trials=10, n_shots_=N_SHOTS,
 
     """
     
-    ## Verify bit-flip correction
+    ## Verify overall bit-flip correction
     error_free_results_z = {'00': 0, '01': 0, '10': 0, '11': 0}
     
     for n in range(n_trials):
@@ -366,7 +358,7 @@ def compare(n_trials=10, n_shots_=N_SHOTS,
             corrected_case_results_z[state] += result[state]
     
     
-    ## Verify phase-flip correction
+    ## Verify overall phase-flip correction
     error_free_results_x = {'00': 0, '01': 0, '10': 0, '11': 0}
     
     for n in range(n_trials):
